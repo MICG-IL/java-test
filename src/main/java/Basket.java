@@ -3,8 +3,9 @@ import java.util.List;
 
 public class Basket {
     List<String> items = new ArrayList<String>();
-    public void addItem(String item) {
-        items.add(item);
+
+    public void addItem(String product) {
+        items.add(product);
     }
 
     public String getBasketContents() {
