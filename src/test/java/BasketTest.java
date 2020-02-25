@@ -13,7 +13,17 @@ public class BasketTest {
     @Test
     public void addSoupToBasket() {
         Basket basket = new Basket();
-        String actual = basket.addItem("soup");
+        basket.addItem("soup");
+        String actual = basket.getBasketContents();
         assertThat(actual, is("soup"));
+    }
+
+    @Test
+    public void addSoupAndBreadToBasket() {
+        Basket basket = new Basket();
+        basket.addItem("soup");
+        basket.addItem("bread");
+        String actual = basket.getBasketContents();
+        assertThat(actual, is("soup, bread"));
     }
 }

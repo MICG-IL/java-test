@@ -1,5 +1,14 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Basket {
-    public String addItem(String soup) {
-        return soup;
+    List<String> items = new ArrayList<String>();
+    public void addItem(String item) {
+        items.add(item);
+    }
+
+    public String getBasketContents() {
+        String contents = String.join(", ", items);
+        return contents;
     }
 }
