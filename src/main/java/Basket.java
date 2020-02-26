@@ -41,26 +41,32 @@ public class Basket {
     }
 
     public String getTotal() {
+        return getTotal(0);
+    }
+
+    public String getTotal(int dayBoughtFromToday) {
         double total = 0;
         for (Map.Entry<Product,Item> entry : itemsByProduct.entrySet())
             total += entry.getValue().getTotal();
 
-        total = applyDiscount(total);
+        total = applyDiscount(total, dayBoughtFromToday);
 
         return formatTotal(total);
     }
 
-    private double applyDiscount(double total) {
-        Item soup = itemsByProduct.get(Product.SOUP);
-        Item bread = itemsByProduct.get(Product.BREAD);
-        total = applySoupDiscountToBread(total, soup, bread);
+    private double applyDiscount(double total, int dayBoughtFromToday) {
+        total = applySoupDiscountToBread(total, dayBoughtFromToday);
         return total;
     }
 
-    private double applySoupDiscountToBread(double total, Item soup, Item bread) {
+    private double applySoupDiscountToBread(double total, int dayBoughtFromToday) {
         // Buy 2 tins of soup and get a loaf of bread half price
         // Effective Dates: yesterday | for 7 days |
-        if ((soup.quantity >= 2) && (bread.quantity > 0)) {
+        Item soup = itemsByProduct.get(Product.SOUP);
+        Item bread = itemsByProduct.get(Product.BREAD);
+        if ((soup.quantity >= 2) &&
+            (bread.quantity > 0) &&
+            (dayBoughtFromToday >= -1)) {
             double breadDiscount = (bread.price / 2);
             total = total - breadDiscount;
         }
