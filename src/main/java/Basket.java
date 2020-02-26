@@ -1,33 +1,36 @@
-import org.apache.commons.lang3.StringUtils;
 
-import java.util.ArrayList;
+import org.javatuples.Pair;
+
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Basket {
-    Map<String, Integer> countByProduct = new HashMap<String, Integer>();
-    List<Item> items = new ArrayList<Item>();
+    Map<String, Pair<Item,Integer>> itemsByProduct = new HashMap<String, Pair<Item,Integer>>();
 
     public void addItem(String product) {
         Item item = new Item(product);
-        items.add(item);
-
-        increment(countByProduct, item.toString());
+        Pair<Item,Integer> pair = new Pair<>(item,0);
+        incrementItemsByProduct(itemsByProduct, pair);
     }
 
-    private void increment(Map<String, Integer> countByItem, String product) {
-        countByItem.putIfAbsent(product, 0);
-        countByItem.put(product, countByItem.get(product) + 1);
+    private void incrementItemsByProduct(Map<String, Pair<Item, Integer>> countByItem, Pair<Item, Integer> pair) {
+        String product = pair.getValue0().toString();
+        countByItem.putIfAbsent(product, pair);
+        Pair<Item, Integer> newPair = countByItem.get(product);
+        Integer currentQuantity = newPair.getValue1();
+        newPair = newPair.setAt1(currentQuantity + 1);
+        countByItem.put(product, newPair);
     }
 
     public String getBasketContents() {
-        StringBuilder mapAsString = new StringBuilder();
-        for (String product : countByProduct.keySet()) {
-            mapAsString.append(countByProduct.get(product) + " " + product + ", ");
+        StringBuilder contentsOfBasket = new StringBuilder();
+        for (String product : itemsByProduct.keySet()) {
+            Pair<Item,Integer>productInfo = itemsByProduct.get(product);
+            Integer productQuantity = productInfo.getValue1();
+            contentsOfBasket.append(productQuantity + " " + product + ", ");
         }
-        mapAsString.delete(mapAsString.length()-2, mapAsString.length());
+        contentsOfBasket.delete(contentsOfBasket.length()-2, contentsOfBasket.length());
 
-        return mapAsString.toString();
+        return contentsOfBasket.toString();
     }
 }
