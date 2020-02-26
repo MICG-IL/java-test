@@ -15,6 +15,6 @@ public class Item {
 
     @Override
     public String toString() {
-        return quantity + " " + product;
+        return quantity + " " + unit + " of " + product;
     }
 }

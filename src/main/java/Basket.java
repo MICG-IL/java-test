@@ -16,6 +16,8 @@ public class Basket {
         Item item;
         if( product == "soup" ) {
             item = new Soup();
+        } else if( product == "bread" ) {
+            item = new Bread();
         } else {
             item = new Item(product);
         }

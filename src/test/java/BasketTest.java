@@ -26,7 +26,7 @@ public class BasketTest {
         basket.addItem("bread");
         String actual = basket.getBasketContents();
         assertThat(actual, containsString("1 tin of soup"));
-        assertThat(actual, containsString("1 bread"));
+        assertThat(actual, containsString("1 loaf of bread"));
     }
 
     @Test
