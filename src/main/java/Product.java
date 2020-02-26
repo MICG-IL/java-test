@@ -4,6 +4,7 @@ public enum Product {
     SOUP("soup"),
     BREAD("bread"),
     APPLE("apple"),
+    MILK("milk"),
     DEFAULT("default");
 
     private String product;

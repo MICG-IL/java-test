@@ -7,6 +7,8 @@ public class ProductFactory {
             item = new Bread();
         } else if( product == Product.APPLE ) {
             item = new Apple();
+        } else if( product == Product.MILK ) {
+            item = new Milk();
         } else {
             item = new Item(Product.DEFAULT);
         }
