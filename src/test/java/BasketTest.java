@@ -15,7 +15,7 @@ public class BasketTest {
         Basket basket = new Basket();
         basket.addItem("soup");
         String actual = basket.getBasketContents();
-        assertThat(actual, is("soup"));
+        assertThat(actual, is("1 soup"));
     }
 
     @Test
@@ -24,6 +24,15 @@ public class BasketTest {
         basket.addItem("soup");
         basket.addItem("bread");
         String actual = basket.getBasketContents();
-        assertThat(actual, is("soup, bread"));
+        assertThat(actual, is("1 soup, 1 bread"));
+    }
+
+    @Test
+    public void addTwoTinsOfSoupToBasket() {
+        Basket basket = new Basket();
+        basket.addItem("soup");
+        basket.addItem("soup");
+        String actual = basket.getBasketContents();
+        assertThat(actual, is("2 soup"));
     }
 }
