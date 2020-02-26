@@ -1,6 +1,7 @@
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 public class BasketTest {
@@ -78,5 +79,19 @@ public class BasketTest {
         basket.addItem(Product.MILK);
         String actual = basket.getBasketContents();
         assertThat(actual, containsString("2 bottles of milk"));
+    }
+
+
+    // Acceptance Test
+    // Price a basket containing:
+    // 6 apples and a bottle of milk, bought today,
+    // - Expected total cost = 1.90;
+    @Test
+    public void priceBasketWithNoDiscount() {
+        Basket basket = new Basket();
+        basket.addItem(Product.APPLE, 6);
+        basket.addItem(Product.MILK);
+        String actual = basket.getTotal();
+        assertThat(actual, is("1.90"));
     }
 }
