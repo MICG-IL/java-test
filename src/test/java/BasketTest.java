@@ -45,4 +45,13 @@ public class BasketTest {
         String actual = basket.getBasketContents();
         assertThat(actual, containsString("2 loaves of bread"));
     }
+
+    @Test
+    public void addAnAppleToBasket() {
+        Basket basket = new Basket();
+        basket.addItem(Product.APPLE);
+        String actual = basket.getBasketContents();
+        assertThat(actual, containsString("1 apple"));
+    }
+
 }
