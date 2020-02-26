@@ -83,9 +83,6 @@ public class BasketTest {
 
 
     // Acceptance Test
-    // Price a basket containing:
-    // 6 apples and a bottle of milk, bought today,
-    // - Expected total cost = 1.90;
     @Test
     public void priceBasketWithNoDiscount() {
         Basket basket = new Basket();
@@ -95,9 +92,6 @@ public class BasketTest {
         assertThat(actual, is("1.90"));
     }
 
-    // Price a basket containing:
-    // 3 tins of soup and 2 loaves of bread, bought today,
-    // - Expected total cost = 3.15;
     @Test
     public void priceBasketWithSoupDiscount() {
         Basket basket = new Basket();
@@ -107,9 +101,6 @@ public class BasketTest {
         assertThat(actual, is("3.15"));
     }
 
-    // Price a basket containing:
-    // 3 tins of soup and 2 loaves of bread, bought 2 days ago,
-    // - Expected total cost = 3.15;
     @Test
     public void priceBasketBeforeSoupDiscountActive() {
         Basket basket = new Basket();
