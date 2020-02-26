@@ -17,12 +17,4 @@ public class Item {
     public String toString() {
         return quantity + " " + product;
     }
-
-    public String getProduct() {
-        return product;
-    }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
 }
