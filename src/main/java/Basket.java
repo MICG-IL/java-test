@@ -6,25 +6,18 @@ import static java.util.stream.Collectors.joining;
 
 public class Basket {
     Map<Product, Item> itemsByProduct = new HashMap<Product, Item>();
+    ProductFactory productFactory = new ProductFactory();
 
     public void addItem(Product product) {
-        incrementItemsByProduct(itemsByProduct, product);
+        Item item = productFactory.getProdcut(product);
+        itemsByProduct.putIfAbsent(product, item);
+        incrementItemsByProduct(product);
     }
 
-    private void incrementItemsByProduct(Map<Product, Item> countByItem, Product product) {
-
-        Item item;
-        if( product == Product.SOUP ) {
-            item = new Soup();
-        } else if( product == Product.BREAD ) {
-            item = new Bread();
-        } else {
-            item = new Item(Product.DEFAULT);
-        }
-        countByItem.putIfAbsent(product, item);
-        item = countByItem.get(product);
+    private void incrementItemsByProduct(Product product) {
+        Item item = itemsByProduct.get(product);
         item.incrementQuantity();
-        countByItem.put(product, item);
+        itemsByProduct.put(product, item);
     }
 
     public String getBasketContents() {
