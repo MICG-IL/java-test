@@ -39,9 +39,12 @@ public class Basket {
         float total = 0;
         for (Map.Entry<Product,Item> entry : itemsByProduct.entrySet())
             total += entry.getValue().getTotal();
+        return formatTotal(total);
+    }
 
+    private String formatTotal(float runningTotal) {
         DecimalFormat formatter = new DecimalFormat("#.00", DecimalFormatSymbols.getInstance( Locale.ENGLISH ));
         formatter.setRoundingMode( RoundingMode.UP );
-        return formatter.format(total);
+        return formatter.format(runningTotal);
     }
 }
