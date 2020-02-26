@@ -110,4 +110,12 @@ public class BasketTest {
         assertThat(actual, is("3.55"));
     }
 
+    @Test
+    public void priceBasketAfterSoupDiscountExpires() {
+        Basket basket = new Basket();
+        basket.addItem(Product.SOUP, 3);
+        basket.addItem(Product.BREAD,2);
+        String actual = basket.getTotal(7);
+        assertThat(actual, is("3.55"));
+    }
 }

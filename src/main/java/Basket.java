@@ -66,7 +66,8 @@ public class Basket {
         Item bread = itemsByProduct.get(Product.BREAD);
         if ((soup.quantity >= 2) &&
             (bread.quantity > 0) &&
-            (dayBoughtFromToday >= -1)) {
+            (dayBoughtFromToday >= -1) &&
+            (dayBoughtFromToday <= 6)) {
             double breadDiscount = (bread.price / 2);
             total = total - breadDiscount;
         }
