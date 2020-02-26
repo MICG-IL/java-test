@@ -5,21 +5,21 @@ import java.util.Map;
 import static java.util.stream.Collectors.joining;
 
 public class Basket {
-    Map<String, Item> itemsByProduct = new HashMap<String, Item>();
+    Map<Product, Item> itemsByProduct = new HashMap<Product, Item>();
 
-    public void addItem(String product) {
+    public void addItem(Product product) {
         incrementItemsByProduct(itemsByProduct, product);
     }
 
-    private void incrementItemsByProduct(Map<String, Item> countByItem, String product) {
+    private void incrementItemsByProduct(Map<Product, Item> countByItem, Product product) {
 
         Item item;
-        if( product == "soup" ) {
+        if( product == Product.SOUP ) {
             item = new Soup();
-        } else if( product == "bread" ) {
+        } else if( product == Product.BREAD ) {
             item = new Bread();
         } else {
-            item = new Item(product);
+            item = new Item(Product.DEFAULT);
         }
         countByItem.putIfAbsent(product, item);
         item = countByItem.get(product);

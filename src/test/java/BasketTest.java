@@ -14,7 +14,7 @@ public class BasketTest {
     @Test
     public void addSoupToBasket() {
         Basket basket = new Basket();
-        basket.addItem("soup");
+        basket.addItem(Product.SOUP);
         String actual = basket.getBasketContents();
         assertThat(actual, containsString("1 tin of soup"));
     }
@@ -22,8 +22,8 @@ public class BasketTest {
     @Test
     public void addSoupAndBreadToBasket() {
         Basket basket = new Basket();
-        basket.addItem("soup");
-        basket.addItem("bread");
+        basket.addItem(Product.SOUP);
+        basket.addItem(Product.BREAD);
         String actual = basket.getBasketContents();
         assertThat(actual, containsString("1 tin of soup"));
         assertThat(actual, containsString("1 loaf of bread"));
@@ -32,8 +32,8 @@ public class BasketTest {
     @Test
     public void addTwoTinsOfSoupToBasket() {
         Basket basket = new Basket();
-        basket.addItem("soup");
-        basket.addItem("soup");
+        basket.addItem(Product.SOUP);
+        basket.addItem(Product.SOUP);
         String actual = basket.getBasketContents();
         assertThat(actual, containsString("2 tins of soup"));
     }
@@ -41,8 +41,8 @@ public class BasketTest {
     @Test
     public void addTwoLoavesOfBreadToBasket() {
         Basket basket = new Basket();
-        basket.addItem("bread");
-        basket.addItem("bread");
+        basket.addItem(Product.BREAD);
+        basket.addItem(Product.BREAD);
         String actual = basket.getBasketContents();
         assertThat(actual, containsString("2 loaves of bread"));
     }

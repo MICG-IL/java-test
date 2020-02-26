@@ -1,6 +1,6 @@
 public class Soup extends Item {
     public Soup() {
-        super("soup");
+        super(Product.SOUP);
         this.unit = "tin";
     }
     public void incrementQuantity() {

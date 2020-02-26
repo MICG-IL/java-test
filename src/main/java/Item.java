@@ -1,9 +1,9 @@
 public class Item {
-    protected final String product;
+    protected final Product product;
     protected int quantity;
     protected String unit;
 
-    public Item(String product) {
+    public Item(Product product) {
         this.product = product;
         this.quantity = 0;
         this.unit = "";

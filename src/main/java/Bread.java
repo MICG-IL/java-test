@@ -1,6 +1,6 @@
 public class Bread extends Item {
     public Bread() {
-        super("bread");
+        super(Product.BREAD);
         this.unit = "loaf";
     }
 
