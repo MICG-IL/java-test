@@ -1,5 +1,6 @@
 import org.junit.Test;
 
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
@@ -15,7 +16,7 @@ public class BasketTest {
         Basket basket = new Basket();
         basket.addItem("soup");
         String actual = basket.getBasketContents();
-        assertThat(actual, is("1 soup"));
+        assertThat(actual, containsString("1 tin of soup"));
     }
 
     @Test
@@ -24,7 +25,8 @@ public class BasketTest {
         basket.addItem("soup");
         basket.addItem("bread");
         String actual = basket.getBasketContents();
-        assertThat(actual, is("1 soup, 1 bread"));
+        assertThat(actual, containsString("1 tin of soup"));
+        assertThat(actual, containsString("1 bread"));
     }
 
     @Test
@@ -33,6 +35,6 @@ public class BasketTest {
         basket.addItem("soup");
         basket.addItem("soup");
         String actual = basket.getBasketContents();
-        assertThat(actual, is("2 soup"));
+        assertThat(actual, containsString("2 tins of soup"));
     }
 }

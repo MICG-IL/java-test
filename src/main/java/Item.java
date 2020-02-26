@@ -1,10 +1,12 @@
 public class Item {
-    private final String product;
-    private int quantity;
+    protected final String product;
+    protected int quantity;
+    protected String unit;
 
     public Item(String product) {
         this.product = product;
         this.quantity = 0;
+        this.unit = "";
     }
 
     public void incrementQuantity() {

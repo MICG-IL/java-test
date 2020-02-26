@@ -12,7 +12,13 @@ public class Basket {
     }
 
     private void incrementItemsByProduct(Map<String, Item> countByItem, String product) {
-        Item item = new Item(product);
+
+        Item item;
+        if( product == "soup" ) {
+            item = new Soup();
+        } else {
+            item = new Item(product);
+        }
         countByItem.putIfAbsent(product, item);
         item = countByItem.get(product);
         item.incrementQuantity();
