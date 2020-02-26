@@ -10,6 +10,8 @@ import static java.util.stream.Collectors.joining;
 // todo: Use dates so we can end discounts at the end of a month
 // todo: Create small money class to get away from total as double
 // todo: Add command line wrappers for UI
+// todo: Discounts should live somewhere else.
+// todo: Discounts should possibly be decorators so they can change,add more easily
 
 public class Basket {
     Map<Product, Item> itemsByProduct = new HashMap<Product, Item>();
