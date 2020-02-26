@@ -111,6 +111,24 @@ public class BasketTest {
     }
 
     @Test
+    public void priceBasketFirstDayOfSoupDiscount() {
+        Basket basket = new Basket();
+        basket.addItem(Product.SOUP, 3);
+        basket.addItem(Product.BREAD,2);
+        String actual = basket.getTotal(-1);
+        assertThat(actual, is("3.15"));
+    }
+
+    @Test
+    public void priceBasketLastDayOfSoupDiscount() {
+        Basket basket = new Basket();
+        basket.addItem(Product.SOUP, 3);
+        basket.addItem(Product.BREAD,2);
+        String actual = basket.getTotal(6);
+        assertThat(actual, is("3.15"));
+    }
+
+    @Test
     public void priceBasketAfterSoupDiscountExpires() {
         Basket basket = new Basket();
         basket.addItem(Product.SOUP, 3);
