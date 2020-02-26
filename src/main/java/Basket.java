@@ -5,28 +5,25 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Basket {
-    Map<String, Pair<Item,Integer>> itemsByProduct = new HashMap<String, Pair<Item,Integer>>();
+    Map<String, Item> itemsByProduct = new HashMap<String, Item>();
 
     public void addItem(String product) {
-        Item item = new Item(product);
-        Pair<Item,Integer> pair = new Pair<>(item,0);
-        incrementItemsByProduct(itemsByProduct, pair);
+        incrementItemsByProduct(itemsByProduct, product);
     }
 
-    private void incrementItemsByProduct(Map<String, Pair<Item, Integer>> countByItem, Pair<Item, Integer> pair) {
-        String product = pair.getValue0().toString();
-        countByItem.putIfAbsent(product, pair);
-        Pair<Item, Integer> newPair = countByItem.get(product);
-        Integer currentQuantity = newPair.getValue1();
-        newPair = newPair.setAt1(currentQuantity + 1);
-        countByItem.put(product, newPair);
+    private void incrementItemsByProduct(Map<String, Item> countByItem, String product) {
+        Item item = new Item(product);
+        countByItem.putIfAbsent(product, item);
+        item = countByItem.get(product);
+        item.incrementQuantity();
+        countByItem.put(product, item);
     }
 
     public String getBasketContents() {
         StringBuilder contentsOfBasket = new StringBuilder();
         for (String product : itemsByProduct.keySet()) {
-            Pair<Item,Integer>productInfo = itemsByProduct.get(product);
-            Integer productQuantity = productInfo.getValue1();
+            Item item = itemsByProduct.get(product);
+            Integer productQuantity = item.getQuantity();
             contentsOfBasket.append(productQuantity + " " + product + ", ");
         }
         contentsOfBasket.delete(contentsOfBasket.length()-2, contentsOfBasket.length());
