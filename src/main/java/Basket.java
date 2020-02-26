@@ -11,13 +11,18 @@ public class Basket {
     Map<Product, Item> itemsByProduct = new HashMap<Product, Item>();
     ProductFactory productFactory = new ProductFactory();
 
+    public Basket() {
+        for (Product product : Product.values()) {
+            Item item = productFactory.getProduct(product);
+            itemsByProduct.put(product, item);
+        }
+    }
+
     public void addItem(Product product) {
         addItem(product, 1);
     }
         
     public void addItem(Product product, int quantity) {
-        Item item = productFactory.getProduct(product);
-        itemsByProduct.putIfAbsent(product, item);
         incrementItemsByProduct(product, quantity);
     }
 
@@ -48,9 +53,7 @@ public class Basket {
     private double applyDiscount(double total) {
         Item soup = itemsByProduct.get(Product.SOUP);
         Item bread = itemsByProduct.get(Product.BREAD);
-        if(soup!=null && bread != null) {
-            total = applySoupDiscountToBread(total, soup, bread);
-        }
+        total = applySoupDiscountToBread(total, soup, bread);
         return total;
     }
 
