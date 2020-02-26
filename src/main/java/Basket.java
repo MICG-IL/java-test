@@ -1,8 +1,8 @@
 
-import org.javatuples.Pair;
-
 import java.util.HashMap;
 import java.util.Map;
+
+import static java.util.stream.Collectors.joining;
 
 public class Basket {
     Map<String, Item> itemsByProduct = new HashMap<String, Item>();
@@ -20,14 +20,10 @@ public class Basket {
     }
 
     public String getBasketContents() {
-        StringBuilder contentsOfBasket = new StringBuilder();
-        for (String product : itemsByProduct.keySet()) {
-            Item item = itemsByProduct.get(product);
-            Integer productQuantity = item.getQuantity();
-            contentsOfBasket.append(productQuantity + " " + product + ", ");
-        }
-        contentsOfBasket.delete(contentsOfBasket.length()-2, contentsOfBasket.length());
-
-        return contentsOfBasket.toString();
+        String contentsOfBasket = itemsByProduct.entrySet()
+                .stream()
+                .map(item -> ""+item.getValue())
+                .collect(joining(", "));
+        return contentsOfBasket;
     }
 }
