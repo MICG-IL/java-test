@@ -137,9 +137,6 @@ public class BasketTest {
         assertThat(actual, is("3.55"));
     }
 
-    //Price a basket containing:
-    // 6 apples and a bottle of milk, bought in 5 days time,
-    // Expected total cost = 1.84;
     @Test
     public void priceBasketWithAppleDiscount() {
         Basket basket = new Basket();
@@ -149,9 +146,6 @@ public class BasketTest {
         assertThat(actual, is("1.84"));
     }
 
-    //Price a basket containing:
-    // 3 apples, 2 tins of soup and a loaf of bread, bought in 5 days time,
-    //     - Expected total cost = 1.97
     @Test
     public void priceBasketWithAppleAndSoupDiscount() {
         Basket basket = new Basket();
@@ -161,4 +155,13 @@ public class BasketTest {
         String actual = basket.getTotal(5);
         assertThat(actual, is("1.97"));
     }
+
+    // todo: Test expired apple discount for 30 day month
+    // todo: Test expired apple discount for 31 day month
+    // todo: Test expired apple discount for Feb
+    // todo: Test expired apple discount for leap year Feb
+
+    // todo: Test apple discount starting 4 days before end of month
+    // todo: Test apple discount starting 3 days before end of month
+    // todo: Test apple discount starting 2 days before end of month
 }

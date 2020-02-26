@@ -7,6 +7,10 @@ import java.util.Map;
 
 import static java.util.stream.Collectors.joining;
 
+// todo: Use dates so we can end discounts at the end of a month
+// todo: Create small money class to get away from total as double
+// todo: Add command line wrappers for UI
+
 public class Basket {
     Map<Product, Item> itemsByProduct = new HashMap<Product, Item>();
     ProductFactory productFactory = new ProductFactory();
@@ -63,7 +67,7 @@ public class Basket {
     private double applyAppleDiscount(double total, int dayBoughtFromToday) {
         // Apples have a 10% discount
         // from 3 days hence
-        // until the end of the following month
+        // todo: until the end of the following month
         if(dayBoughtFromToday >= 3) {
             Item apple = itemsByProduct.get(Product.APPLE);
             double appleDiscount = apple.getTotal() * 0.1;
