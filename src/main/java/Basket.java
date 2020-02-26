@@ -56,6 +56,19 @@ public class Basket {
 
     private double applyDiscount(double total, int dayBoughtFromToday) {
         total = applySoupDiscountToBread(total, dayBoughtFromToday);
+        total = applyAppleDiscount(total, dayBoughtFromToday);
+        return total;
+    }
+
+    private double applyAppleDiscount(double total, int dayBoughtFromToday) {
+        // Apples have a 10% discount
+        // from 3 days hence
+        // until the end of the following month
+        if(dayBoughtFromToday >= 3) {
+            Item apple = itemsByProduct.get(Product.APPLE);
+            double appleDiscount = apple.getTotal() * 0.1;
+            total = total - appleDiscount;
+        }
         return total;
     }
 

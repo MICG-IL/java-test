@@ -136,4 +136,16 @@ public class BasketTest {
         String actual = basket.getTotal(7);
         assertThat(actual, is("3.55"));
     }
+
+    //Price a basket containing:
+    // 6 apples and a bottle of milk, bought in 5 days time,
+    // Expected total cost = 1.84;
+    @Test
+    public void priceBasketWithAppleDiscount() {
+        Basket basket = new Basket();
+        basket.addItem(Product.APPLE, 6);
+        basket.addItem(Product.MILK);
+        String actual = basket.getTotal(5);
+        assertThat(actual, is("1.84"));
+    }
 }
