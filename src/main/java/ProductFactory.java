@@ -1,5 +1,5 @@
 public class ProductFactory {
-    public Item getProdcut(Product product) {
+    public Item getProduct(Product product) {
         Item item;
         if( product == Product.SOUP ) {
             item = new Soup();

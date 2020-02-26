@@ -1,14 +1,13 @@
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 public class BasketTest {
     @Test
     public void firstTest() {
         Basket basket = new Basket();
-        assert(basket != null);
+        assert (basket != null);
     }
 
     @Test

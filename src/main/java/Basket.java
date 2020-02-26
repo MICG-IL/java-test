@@ -1,4 +1,3 @@
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,7 +8,7 @@ public class Basket {
     ProductFactory productFactory = new ProductFactory();
 
     public void addItem(Product product) {
-        Item item = productFactory.getProdcut(product);
+        Item item = productFactory.getProduct(product);
         itemsByProduct.putIfAbsent(product, item);
         incrementItemsByProduct(product);
     }
@@ -23,7 +22,7 @@ public class Basket {
     public String getBasketContents() {
         String contentsOfBasket = itemsByProduct.entrySet()
                 .stream()
-                .map(item -> ""+item.getValue())
+                .map(item -> "" + item.getValue())
                 .collect(joining(", "));
         return contentsOfBasket;
     }
