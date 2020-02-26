@@ -36,15 +36,37 @@ public class Basket {
     }
 
     public String getTotal() {
-        float total = 0;
+        double total = 0;
         for (Map.Entry<Product,Item> entry : itemsByProduct.entrySet())
             total += entry.getValue().getTotal();
+
+        total = applyDiscount(total);
+
         return formatTotal(total);
     }
 
-    private String formatTotal(float runningTotal) {
+    private double applyDiscount(double total) {
+        Item soup = itemsByProduct.get(Product.SOUP);
+        Item bread = itemsByProduct.get(Product.BREAD);
+        if(soup!=null && bread != null) {
+            total = applySoupDiscountToBread(total, soup, bread);
+        }
+        return total;
+    }
+
+    private double applySoupDiscountToBread(double total, Item soup, Item bread) {
+        // Buy 2 tins of soup and get a loaf of bread half price
+        // Effective Dates: yesterday | for 7 days |
+        if ((soup.quantity >= 2) && (bread.quantity > 0)) {
+            double breadDiscount = (bread.price / 2);
+            total = total - breadDiscount;
+        }
+        return total;
+    }
+
+    private String formatTotal(double runningTotal) {
         DecimalFormat formatter = new DecimalFormat("#.00", DecimalFormatSymbols.getInstance( Locale.ENGLISH ));
-        formatter.setRoundingMode( RoundingMode.UP );
+        formatter.setRoundingMode( RoundingMode.DOWN );
         return formatter.format(runningTotal);
     }
 }
